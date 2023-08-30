@@ -1,12 +1,14 @@
 import React from 'react'
-import { CgMoreO } from 'react-icons/cg'
-import More from '../assets/more.png'
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
+     const navigate = useNavigate();
      return (
-          <div className='flex items-center justify-between px-5 w-full  h-16 '>
+          <div className='flex items-center justify-between px-5 w-full  h-16 absolute top-2 '>
                <div className='p-1 md:p-2 flex text-center justify-center items-center'>
-                    <p className='text-black text-center font-normal text-3xl font-display md:text-4xl'>Bio_Links</p>
+                    <p className='text-black text-center font-normal cursor-pointer text-3xl font-display md:text-4xl' onClick={
+                         ()=>navigate('/')
+                    }>Bio_Links</p>
                </div>
 
 
