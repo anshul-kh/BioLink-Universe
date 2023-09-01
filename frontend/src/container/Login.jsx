@@ -1,23 +1,61 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Line from '../assets/line.png'
 import Bio from '../assets/Login1.png'
 import Google from '../assets/Google.png'
-import { useGoogleLogin } from '@react-oauth/google';
+import { GoogleLogin } from 'react-google-login';
 import { useNavigate } from 'react-router-dom';
-import jwt_decode from "jwt-decode";
+import { client_id } from '../utils/id'
+import { gapi } from "gapi-script";
+import { client } from '../utils/client';
+import { userQuery,fetchUser } from '../utils/query';
 
 const Login = () => {
-  
+
+
+
+
   const navigate = useNavigate();
 
-  const login = useGoogleLogin({
-    onSuccess: response => {
-      const userInfo = jwt_decode(response.access_token);
-      // get user details
-      const { name, email, picture } = userInfo;
-      console.log(name,email,picture)
-    },
-  });
+  const handleGoogleLogin = (res) => {
+
+      localStorage.setItem('user', JSON.stringify(res.profileObj));
+
+      const { name, email, imageUrl, googleId } = res.profileObj;
+
+      const doc = {
+        _id: googleId,
+        _type: 'user',
+        email: email,
+        userName: name,
+        image: imageUrl
+      }
+
+      client.createIfNotExists(doc).then(() => {
+        
+      })
+    
+    const url = `/edit/${googleId}`
+    
+    //  navigate(`/edit/${googleId}`, { replace: true })
+    window.location.href = url;
+
+    }
+
+    
+  
+
+  useEffect(() => {
+    gapi.load("client:auth2", () => {
+      gapi.client.init({
+        clientId: {client_id},
+        plugin_name: "chat"
+      });
+    });
+  }, [])
+
+  
+  
+
 
   return (
     <div className='absolute flex items-center justify-center flex-col   h-auto gap-12 w-8/12'>
@@ -29,13 +67,13 @@ const Login = () => {
 
 
       <div className='flex flex-col font-patua gap-3 text-5xl'>
-        
-          <p>
-            Hassle-free setup with
 
-          </p>
-          <p>Google Authentication</p>
-        
+        <p>
+          Hassle-free setup with
+
+        </p>
+        <p>Google Authentication</p>
+
       </div>
 
       <div className='flex justify-between w-4/6 bg-contain rounded-xl drop-shadow-xl font-patua '>
@@ -43,16 +81,25 @@ const Login = () => {
           <div className='text-5xl gap-2 flex flex-col drop-shadow-2xl relative bottom-12'><p>Step into</p>
             <p>Bio Oasis</p></div>
 
-          <button className='flex relative flex-shrink-0 justify-center items-center flex-col -left-6 cursor-pointer top-7' onClick={() => login()}>
-            <img src={Google} className='absolute -top-12 z-30' alt="google" />
-            <div className='w-80 h-16 flex justify-center items-center drop-shadow-lg rounded-xl bg-card text-2xl flex-shrink-0'>
-              Authenticate
-            </div>
-          </button>
 
- 
 
-    </div>
+          <GoogleLogin
+            render={(renderProps) => (
+              <button className='flex relative flex-shrink-0 justify-center items-center flex-col -left-6 cursor-pointer top-7' onClick={renderProps.onClick} >
+                <img src={Google} className='absolute -top-12 z-30' alt="google" />
+                <div className='w-80 h-16 flex justify-center items-center drop-shadow-lg rounded-xl bg-card text-2xl flex-shrink-0'>
+                  Authenticate
+                </div>
+              </button>
+            )}
+            clientId={client_id}
+            onSuccess={handleGoogleLogin}
+            onFailure={handleGoogleLogin}
+            cookiePolicy="single_host_origin"
+          />
+
+
+        </div>
         <img src={Bio} className='bottom-3 drop-shadow-xl relative right-1' alt="bio" />
       </div>
     </div>
