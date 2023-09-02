@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Edit = () => {
+const MinorLink = () => {
   return (
     <div>
-      edit
+      Minor
     </div>
   )
 }
 
-export default Edit
+export default MinorLink

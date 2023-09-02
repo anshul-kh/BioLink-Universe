@@ -3,7 +3,7 @@ import { Footer, Navbar } from './components/index';
 import Freebar from './components/Freebar';
 import {BrowserRouter as Router, Routes,Route } from 'react-router-dom';
 import Login from './container/Login';
-import Edit from './container/Edit';
+import Profile from './container/Profile';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} /> 
           <Route path="/login" element={<Login/>} /> 
-          <Route path="/edit/:userId" element={<Edit/>} /> 
+          <Route path="/user/:userId" element={<Profile/>} /> 
         </Routes>
         
         <Footer/>

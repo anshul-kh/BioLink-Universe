@@ -1,3 +1,5 @@
 export {default as Footer} from './Footer'
 export {default as Sidebar} from './Sidebar'
-export {default as Navbar} from './Navbar'
+export { default as Navbar } from './Navbar'
+export {default as Minor} from './MinorLink'
+export {default as Major} from './MajorLink'

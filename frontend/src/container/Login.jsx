@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Line from '../assets/line.png'
 import Bio from '../assets/Login1.png'
 import Google from '../assets/Google.png'
@@ -7,11 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { client_id } from '../utils/id'
 import { gapi } from "gapi-script";
 import { client } from '../utils/client';
-import { userQuery,fetchUser } from '../utils/query';
 
 const Login = () => {
-
-
 
 
   const navigate = useNavigate();
@@ -31,14 +28,9 @@ const Login = () => {
       }
 
       client.createIfNotExists(doc).then(() => {
-        
+        navigate(`/user/${googleId}`, { replace: true })
       })
     
-    const url = `/edit/${googleId}`
-    
-    //  navigate(`/edit/${googleId}`, { replace: true })
-    window.location.href = url;
-
     }
 
     
