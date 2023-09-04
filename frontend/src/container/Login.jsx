@@ -50,7 +50,7 @@ const Login = () => {
 
 
   return (
-    <div className='absolute flex items-center justify-center flex-col   h-auto gap-12 w-8/12'>
+    <div className='absolute flex items-center justify-center flex-col h-auto gap-12 w-8/12'>
       <div className='flex flex-col justify-center items-center font-roboto text-xl'>
         <p> Your Journey Begins</p>
         <img src={Line} alt="line" />

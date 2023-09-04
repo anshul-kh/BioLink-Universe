@@ -8,10 +8,10 @@ import Profile from './container/Profile';
 function App() {
   return (
 <Router>
-      <div className="w-full h-screen flex justify-center items-center bg-mainColor p-2">
+      <div className="w-full  h-full flex justify-center min-h-screen items-center bg-mainColor p-2">
          <Navbar />
                
-               <Freebar />
+          <Freebar />
         
         <Routes>
           <Route path="/" element={<Home />} /> 
