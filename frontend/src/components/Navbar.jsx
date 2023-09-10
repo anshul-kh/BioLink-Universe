@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { AiFillCloseCircle } from 'react-icons/ai';
+import Sidebar from './Sidebar';
 
 const Navbar = () => {
      const navigate = useNavigate();
+
+     const [toggleSidebar, setToggleSidebar] = useState(false);
+
+     const handleSidebar = () => {
+        setToggleSidebar(!toggleSidebar)  
+     }
+
      return (
-          <div className='flex items-center justify-between px-5 w-full  h-16 absolute bg-transparent top-2 '>
+          <div className='flex items-center justify-between px-5 w-full  h-16 absolute bg-transparent top-2'>
                <div className='p-1 md:p-2 flex text-center justify-center items-center'>
                     <p className='text-black text-center font-normal cursor-pointer text-3xl font-display md:text-4xl' onClick={
                          ()=>navigate('/')
@@ -19,7 +28,7 @@ const Navbar = () => {
                     <div className='invisible md:visible'>
                          Contact
                     </div>
-                    <button >
+                    <button onClick={handleSidebar} >
                          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
                               <circle cx="25" cy="25" r="25" fill="#D9D9D9" opacity='0.5' />
                               <path d="M37.273 27.8636C38.1014 27.8636 38.773 27.1921 38.773 26.3636C38.773 25.5352 38.1014 24.8636 37.273 24.8636V27.8636ZM7.27295 27.8636L37.273 27.8636V24.8636L7.27295 24.8636V27.8636Z" fill="black" />
@@ -29,6 +38,20 @@ const Navbar = () => {
                     </button>
                    
                </div>
+
+
+               {toggleSidebar && (
+                    <div className='fixed w-1/4 bg-white h-screen overflow-y-auto shadow-md z-50 animate-slide-in right-0 top-0'>
+                         <div className='absolute w-full flex justify-end items-center p-2'>
+
+                              <AiFillCloseCircle fontSize={30} className='cursor-pointer' onClick={() => setToggleSidebar(false)} />
+                             
+                         </div>
+                         <Sidebar/>
+                    </div>
+
+               )}
+
 
 
 

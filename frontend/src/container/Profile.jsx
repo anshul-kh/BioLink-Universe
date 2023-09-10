@@ -11,6 +11,7 @@ const Profile = () => {
 
   const { userId } = useParams();
 
+
   useEffect(() => {
     const fetchUser = async () => {
       try {

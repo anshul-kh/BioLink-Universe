@@ -63,8 +63,8 @@ module.exports = {
       keyframes: {
         'slide-in': {
           '0%': {
-            '-webkit-transform': 'translateX(-200px)',
-            transform: 'translateX(-200px)',
+            '-webkit-transform': 'translateX(200px)',
+            transform: 'translateX(200px)',
           },
           '100%': {
             '-webkit-transform': 'translateX(0px)',
