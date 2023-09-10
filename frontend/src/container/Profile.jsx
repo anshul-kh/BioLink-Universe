@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Major, Minor } from '../components';
 import { userQuery } from '../utils/query';
 import { client } from '../utils/client';
-import EditBtn from '../assets/Edit.png';
+
 import Github from '../assets/github.png';
 
 const Profile = () => {
