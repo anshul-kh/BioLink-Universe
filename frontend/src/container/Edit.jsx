@@ -2,14 +2,21 @@ import React,{useState,useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import { client } from '../utils/client'
 import { userQuery } from '../utils/query';
-import EditBtn from '../assets/Edit.png';
 import { Minor, Major } from '../components';
-import Github from '../assets/github.png';
+import {Github,LinkedIn,Youtube,Insta,Blog} from '../assets/index';
+import EditSocial from '../components/EditSocial';
+
 
 const Edit = () => {
      const [user, setUser] = useState(null);
      const [text, setText] = useState('');
-     const [isFocused, setIsFocused] = useState(false);
+     const [github, setGithub] = useState();
+     const [youtube, setYoutube] = useState();
+     const [linkedIn, setLinkedIn] = useState();
+     const [insta, setInsta] = useState();
+     const [blog, setBlog] = useState();
+
+
      const { userId } = useParams();
 
      useEffect(() => {
@@ -41,20 +48,21 @@ const Edit = () => {
                       className='rounded-full w-36 h-36 -mt-10 border-4  border-white drop-shadow-2xl relative'
                  />
                  <p className='font-patua text-2xl'>{userName}</p>
-                 <div className='flex justify-start mt-6 items-start bg-card rounded-2xl drop-shadow-xl w-96 md:w-3/6 h-auto relative p-1  whitespace-pre-wrap'
-                      onClick={() => setIsFocused(true)}
-                      onBlur={() => setIsFocused(false)}>
-                      {isFocused && <input className='h-full w-full' onChange={(e) => {
-                           setText(e.target.value)
-                      }} />}
-                      {
-                           !isFocused && (
-                                <p className='font-patua text-2xl p-1 text-center flex flex-wrap w-full overflow-wrap'  >
-                                     {text}
-                                </p>
-                           )
-                      }
-                 </div>
+         
+                           <textarea
+                                className='flex justify-start mt-6 items-start bg-card rounded-2xl drop-shadow-xl  md:w-3/6 h-auto relative p-1 text-center text-xl  whitespace-pre-wrap'
+                                value={text}
+                                onChange={(e) => setText(e.target.value)}
+                                style={{
+                                     
+                                     height: '150px',
+                                     whiteSpace: 'pre-wrap',
+                                     overflowWrap: 'break-word',
+                                     overflowY: 'scroll'
+                                }}
+                                placeholder='Enter Your Bio Text Here. Please note it should not be more that 40 words'
+                           />
+
 
             </div>
 
@@ -64,9 +72,16 @@ const Edit = () => {
 
 
             <div className='flex flex-col w-full justify-center items-center gap-8 mt-7'>
-                 <Major icon={Github} title={"Follow On Github"} />
-                 <Major icon={Github} title={"Follow On Github"} />
-                 <Major icon={Github} title={"Follow On Github"} />
+                 <EditSocial icon={Github} title={'GitHub'} state={github} setState={setGithub} />
+                 <EditSocial icon={LinkedIn} title={'LinkedIn'} state={linkedIn} setState={setLinkedIn} />
+                 <EditSocial icon={Blog} title={'Blogs'} state={blog} setState={setBlog} />
+                 <EditSocial icon={Insta} title={'Instagram'} state={insta} setState={setInsta} />
+                 <EditSocial icon={Youtube} title={'Youtube'} state={youtube} setState={setYoutube} />
+                 
+                 
+                 
+                 
+                 
 
             </div>
 

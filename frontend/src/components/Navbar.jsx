@@ -13,7 +13,7 @@ const Navbar = () => {
      }
 
      return (
-          <div className='flex items-center justify-between px-5 w-full  h-16 absolute bg-transparent top-2'>
+          <div className='flex items-center justify-between px-5 w-full  h-16 fixed bg-transparent top-2'>
                <div className='p-1 md:p-2 flex text-center justify-center items-center'>
                     <p className='text-black text-center font-normal cursor-pointer text-3xl font-display md:text-4xl' onClick={
                          ()=>navigate('/')

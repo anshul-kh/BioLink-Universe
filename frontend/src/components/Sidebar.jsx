@@ -64,23 +64,10 @@ const Sidebar = ({ closeToggle }) => {
       
 
 
-      <div className='bottom-5 absolute flex w-full flex-col justify-center items-center gap-1 '>
+      <div className='bottom-20 absolute flex w-full flex-col justify-center items-center gap-1 '>
         <p className='text-xl'>Follow For More :-</p>
         <img src={Line} alt="line" />
-        <div className='flex flex-row justify-center items-center gap-2 bottom-5 right-7 md:bottom-10 md:right-36 md:text-xl font-footer z-10'>
-
-          <div className=''>
-            <a href="">GitHub</a>
-          </div>
-          <p>|</p>
-          <div className=''>
-            <a href="">Twitter</a>
-          </div>
-          <p>|</p>
-          <div className=''>
-            <a href="">LinkedIn</a>
-          </div>
-        </div>
+        
 
         </div>
 
