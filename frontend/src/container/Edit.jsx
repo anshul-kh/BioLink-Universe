@@ -2,22 +2,76 @@ import React,{useState,useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import { client } from '../utils/client'
 import { userQuery } from '../utils/query';
-import { Minor, Major } from '../components';
-import {Github,LinkedIn,Youtube,Insta,Blog} from '../assets/index';
+import {Github,LinkedIn,Youtube,Insta,Blog,Save} from '../assets/index';
 import EditSocial from '../components/EditSocial';
+import EditOther from '../components/EditOther';
+
 
 
 const Edit = () => {
      const [user, setUser] = useState(null);
-     const [text, setText] = useState('');
+     const [text, setText] = useState();
      const [github, setGithub] = useState();
      const [youtube, setYoutube] = useState();
      const [linkedIn, setLinkedIn] = useState();
      const [insta, setInsta] = useState();
      const [blog, setBlog] = useState();
-
-
+     //link
+     const [link1 , setLink1] = useState();
+     const [link2 , setLink2] = useState();
+     const [link3 , setLink3] = useState();
+     const [link4, setLink4] = useState();
+     //inp
+     const [inp1, setInp1] = useState();
+     const [inp2, setInp2] = useState();
+     const [inp3, setInp3] = useState();
+     const [inp4, setInp4] = useState();
+     
      const { userId } = useParams();
+
+
+     const myNewDocument = {
+          _id:userId,
+          _type: 'profile', // schema type
+          title: 'Profile',
+          intro: text,
+          github: github,
+          linkedIn: linkedIn,
+          blogs: blog,
+          instagram: insta,
+          youtube: youtube,
+          other1: {
+               _type: 'other1',
+               input: inp1,
+               title: link1
+          },
+          other2: {
+               _type: 'other2',
+               input: inp2,
+               title: link2
+          },
+          other3: {
+               _type: 'other3',
+               input: inp3,
+               title: link3
+          },
+          other4: {
+               _type: 'other4',
+               input: inp4,
+               title: link4
+          }
+     }
+
+     const handleSave = () => {
+
+          client.createIfNotExists(myNewDocument).then(() => {
+               window.location.reload();
+          })
+     }
+
+
+
+     
 
      useEffect(() => {
           const fetchUser = async () => {
@@ -77,20 +131,23 @@ const Edit = () => {
                  <EditSocial icon={Blog} title={'Blogs'} state={blog} setState={setBlog} />
                  <EditSocial icon={Insta} title={'Instagram'} state={insta} setState={setInsta} />
                  <EditSocial icon={Youtube} title={'Youtube'} state={youtube} setState={setYoutube} />
-                 
-                 
-                 
-                 
-                 
+
 
             </div>
 
 
             <div className='text-center flex  w-full flex-col justify-center items-center font-patua mt-5 gap-3 mb-5'>
                  <p className='text-2xl'>Other Links</p>
-                 <Minor />
-                 <Minor />
+                 <EditOther link={link1} setLink={setLink1} inp={inp1} setInp={setInp1} />
+                 <EditOther link={link2} setLink={setLink2} inp={inp2} setInp={setInp2} />
+                 <EditOther link={link3} setLink={setLink3} inp={inp3} setInp={setInp3} />
+                 <EditOther link={link4} setLink={setLink4} inp={inp4} setInp={setInp4} />
+                 
             </div>
+
+            <button className='w-16 h-16  text-white rounded-full text-2xl font-patua drop-shadow-2xl fixed bottom-10 left-3/4 z-30 '>
+                 <img src={Save} alt="save" onClick={handleSave}/>
+            </button>
 
        </div>
   )

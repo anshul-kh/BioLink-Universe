@@ -3,3 +3,4 @@ export { default as Youtube } from './Youtube.png';
 export { default as LinkedIn } from './LinkedIn.png';
 export { default as Insta } from './instagram.png';
 export { default as Blog } from './blog.png';
+export { default as Save } from './tick-mark.png';
