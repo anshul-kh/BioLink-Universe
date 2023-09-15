@@ -1,5 +1,6 @@
 export default {
      name: 'profile',
+     title:'Profile',
      type: 'document',
      fields: [
           {

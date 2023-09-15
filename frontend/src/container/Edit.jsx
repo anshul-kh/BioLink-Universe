@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import { client } from '../utils/client'
-import { userQuery } from '../utils/query';
+import { userQuery,dataQuery } from '../utils/query';
 import {Github,LinkedIn,Youtube,Insta,Blog,Save} from '../assets/index';
 import EditSocial from '../components/EditSocial';
 import EditOther from '../components/EditOther';
@@ -30,11 +30,15 @@ const Edit = () => {
      
      const { userId } = useParams();
 
+     
+
+     const { userName, profImg,bioId } = user || {};
+     
 
      const myNewDocument = {
-          _id:uuidv4(),
+          _id:bioId,
           _type: 'profile', // schema type
-          userId:userId,
+          userId: userId,
           intro: text,
           github: github,
           linkedIn: linkedIn,
@@ -90,8 +94,13 @@ const Edit = () => {
           fetchUser();
      }, [userId]);
 
-     const { userName, profImg } = user || {};
+     
+     console.log(bioId);
 
+     const data_query = dataQuery(bioId);
+     client.fetch(data_query).then((data) => {
+          console.log(data)
+     }) 
 
   return (
        <div className="flex flex-col justify-start h-auto min-h-full overflow-y-scroll no-scrollbar items-center gap-1 w-3/5 ">

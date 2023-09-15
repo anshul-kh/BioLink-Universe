@@ -19,6 +19,12 @@ export default {
           type:'string'
           },
      
+     {
+          name: 'bioId',
+          title: 'Bio Id',
+          type:'string'
+          },
+     
      
      ]
 }

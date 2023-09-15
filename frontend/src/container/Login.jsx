@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { client_id } from '../utils/id'
 import { gapi } from "gapi-script";
 import { client } from '../utils/client';
+import { v4 as uuidv4 } from 'uuid';
 
 const Login = () => {
 
@@ -25,7 +26,8 @@ const Login = () => {
         _type: 'user',
         email: email,
         userName: name,
-        image: imageUrl
+        image: imageUrl,
+        bioId: uuidv4()
       }
 
       client.createIfNotExists(doc).then(() => {

@@ -3,6 +3,11 @@ export const userQuery = (userId) => {
      return query
 }
 
+export const dataQuery = (bioId) => {
+     const query = `*[ _type == "profile" && _id == '${bioId}']`
+     return query
+}
+
 
 
 export const fetchUser = () => {
