@@ -5,6 +5,7 @@ import { userQuery } from '../utils/query';
 import {Github,LinkedIn,Youtube,Insta,Blog,Save} from '../assets/index';
 import EditSocial from '../components/EditSocial';
 import EditOther from '../components/EditOther';
+import { v4 as uuidv4 } from 'uuid';
 
 
 
@@ -31,9 +32,9 @@ const Edit = () => {
 
 
      const myNewDocument = {
-          _id:userId,
+          _id:uuidv4(),
           _type: 'profile', // schema type
-          title: 'Profile',
+          userId:userId,
           intro: text,
           github: github,
           linkedIn: linkedIn,
@@ -64,7 +65,7 @@ const Edit = () => {
 
      const handleSave = () => {
 
-          client.createIfNotExists(myNewDocument).then(() => {
+          client.create(myNewDocument).then(() => {
                window.location.reload();
           })
      }

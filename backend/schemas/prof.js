@@ -1,11 +1,15 @@
 export default {
      name: 'profile',
-     title: 'Profile',
      type: 'document',
      fields: [
           {
                name: 'intro',
                title: 'Intro',
+               type:'string'
+          },
+          {
+               name: 'userId',
+               title: 'UserId',
                type:'string'
           },
           {

@@ -15,9 +15,10 @@ const Login = () => {
 
   const handleGoogleLogin = (res) => {
 
-      localStorage.setItem('user', JSON.stringify(res.profileObj));
+    localStorage.setItem('user', JSON.stringify(res.profileObj));
+    
 
-      const { name, email, imageUrl, googleId } = res.profileObj;
+    const { name, email, imageUrl, googleId } = res.profileObj;
 
       const doc = {
         _id: googleId,
@@ -39,8 +40,7 @@ const Login = () => {
   useEffect(() => {
     gapi.load("client:auth2", () => {
       gapi.client.init({
-        clientId: {client_id},
-        plugin_name: "chat"
+        clientId: {client_id}
       });
     });
   }, [])
