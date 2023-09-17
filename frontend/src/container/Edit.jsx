@@ -30,13 +30,16 @@ const Edit = () => {
      
      const { userId } = useParams();
 
+     //data state
+     const [data, setData] = useState();
+     const [existingDoc, setExistingDoc] = useState(true);
      
 
      const { userName, profImg,bioId } = user || {};
      
 
      const myNewDocument = {
-          _id:bioId,
+          _id:bioId || '',
           _type: 'profile', // schema type
           userId: userId,
           intro: text,
@@ -67,12 +70,44 @@ const Edit = () => {
           }
      }
 
-     const handleSave = () => {
+   
+       
 
-          client.create(myNewDocument).then(() => {
-               window.location.reload();
-          })
-     }
+     //check data already exist or not
+
+
+ function uploadOrEditDocument(doc,existingDoc) {
+  try {
+    // Check if the document exists by querying based on a unique identifier
+       
+       console.log(data.length)
+       
+       if ( data.length === 0) {
+            setExistingDoc(false)
+       }
+
+       console.log(existingDoc)
+
+    if (existingDoc) {
+      // Document exists, update it
+       client
+        .patch(bioId)
+        .set(doc)
+        .commit();
+      console.log('Document updated successfully.');
+    } else {
+      // Document doesn't exist, create a new one
+       client
+        .createIfNotExists()
+        .set(doc)
+        .commit();
+      console.log('Document created successfully.');
+    }
+  } catch (error) {
+    console.error('Error uploading or editing the document:', error.message);
+  }
+}
+
 
 
 
@@ -86,6 +121,11 @@ const Edit = () => {
                          setUser(data[0]);
                     });
 
+                      const data_query = dataQuery(bioId);
+         client.fetch(data_query).then((data) => {
+          setData(data);
+     }) 
+
                } catch (error) {
                     console.log(error);
                }
@@ -95,12 +135,9 @@ const Edit = () => {
      }, [userId]);
 
      
-     console.log(bioId);
+     // console.log(bioId);
 
-     const data_query = dataQuery(bioId);
-     client.fetch(data_query).then((data) => {
-          console.log(data)
-     }) 
+   
 
   return (
        <div className="flex flex-col justify-start h-auto min-h-full overflow-y-scroll no-scrollbar items-center gap-1 w-3/5 ">
@@ -156,7 +193,9 @@ const Edit = () => {
             </div>
 
             <button className='w-16 h-16  text-white rounded-full text-2xl font-patua drop-shadow-2xl fixed bottom-10 left-3/4 z-30 '>
-                 <img src={Save} alt="save" onClick={handleSave}/>
+                 <img src={Save} alt="save" onClick={() => {
+                      uploadOrEditDocument(myNewDocument,existingDoc)
+                 }}/>
             </button>
 
        </div>
