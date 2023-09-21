@@ -27,19 +27,29 @@ const Edit = () => {
      const [inp2, setInp2] = useState();
      const [inp3, setInp3] = useState();
      const [inp4, setInp4] = useState();
+
+     const [bioId, setBioId] = useState('');
      
      const { userId } = useParams();
 
      //data state
      const [data, setData] = useState();
      const [existingDoc, setExistingDoc] = useState(true);
+
+     
      
 
-     const { userName, profImg,bioId } = user || {};
+     const { userName, profImg} = user || {};
      
 
+       
+
+     //check data already exist or not
+
+
+     function uploadOrEditDocument(_id) {
      const myNewDocument = {
-          _id:bioId || '',
+          _id: _id || '',
           _type: 'profile', // schema type
           userId: userId,
           intro: text,
@@ -71,36 +81,21 @@ const Edit = () => {
      }
 
    
+      try {
        
-
-     //check data already exist or not
-
-
- function uploadOrEditDocument(doc,existingDoc) {
-  try {
     // Check if the document exists by querying based on a unique identifier
-       
-       console.log(data.length)
-       
-       if ( data.length === 0) {
-            setExistingDoc(false)
-       }
-
-       console.log(existingDoc)
-
     if (existingDoc) {
       // Document exists, update it
        client
-        .patch(bioId)
-        .set(doc)
+        .patch(_id)
+        .set(myNewDocument)
         .commit();
       console.log('Document updated successfully.');
     } else {
       // Document doesn't exist, create a new one
        client
-        .createIfNotExists()
-        .set(doc)
-        .commit();
+        .createIfNotExists(myNewDocument)
+        
       console.log('Document created successfully.');
     }
   } catch (error) {
@@ -119,23 +114,44 @@ const Edit = () => {
                     const query = userQuery(userId);
                     await client.fetch(query).then((data) => {
                          setUser(data[0]);
+                         setBioId(data[0]?.bioId);
+
                     });
 
-                      const data_query = dataQuery(bioId);
-         client.fetch(data_query).then((data) => {
-          setData(data);
-     }) 
+                    
+                    const data_query = dataQuery(bioId);
+                    client.fetch(data_query).then((data) => {
+                         setData(data[0]);
+                         //set data according
+                         
+                          
+              if (data.length === 0) {
+                   setExistingDoc(false);
+              }
+                     
+             
+                    }) 
+                    
+                    
+                    
 
+                    
+               
+                    
+                    
                } catch (error) {
                     console.log(error);
                }
           };
 
           fetchUser();
-     }, [userId]);
+     }, [userId , bioId  ]);
 
      
-     // console.log(bioId);
+                    setText(data?.intro);
+
+     
+     console.log(data);
 
    
 
@@ -194,7 +210,7 @@ const Edit = () => {
 
             <button className='w-16 h-16  text-white rounded-full text-2xl font-patua drop-shadow-2xl fixed bottom-10 left-3/4 z-30 '>
                  <img src={Save} alt="save" onClick={() => {
-                      uploadOrEditDocument(myNewDocument,existingDoc)
+                      uploadOrEditDocument(bioId);
                  }}/>
             </button>
 
