@@ -1,6 +1,9 @@
-import React from 'react'
+import React from 'react';
 
 const EditSocial = (props) => {
+
+     
+
      return (
 
           <div className='flex  justify-center items-center bg-card md:w-3/6 rounded-2xl drop-shadow-xl w-96 h-20 relative'>
