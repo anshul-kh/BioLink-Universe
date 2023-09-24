@@ -21,6 +21,7 @@ const Login = () => {
 
     const { name, email, imageUrl, googleId } = res.profileObj;
 
+
       const doc = {
         _id: googleId,
         _type: 'user',

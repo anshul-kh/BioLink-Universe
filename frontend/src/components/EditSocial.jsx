@@ -9,7 +9,7 @@ const EditSocial = (props) => {
                     <img src={props.icon} alt='icon' key={props.title} className=' bottom-6 w-16 h-16' />
                     <p className=' text-2xl drop-shadow-[0_4px_4px_rgba(0,0,0,0.4)]  font-patua  z-20 bottom-4'>{props.title}</p>
                </div>
-               <input type="text" className='w-3/6 text-center right-14 text-xl font-footer h-full outline-none bg-inherit relative' placeholder='Enter Your Link Here' onChange={(e) => {
+               <input type="text" value={props.state} className='w-3/6 text-center right-14 text-xl font-footer h-full outline-none bg-inherit relative' placeholder='Enter Your Link Here' onChange={(e) => {
                     props.setState(e.target.value)
                }} />
                

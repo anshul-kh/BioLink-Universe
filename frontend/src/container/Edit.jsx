@@ -25,19 +25,17 @@ const Edit = () => {
     inp3: '',
     inp4: '',
     bioId: '',
-    data: null,
-    existingDoc: true,
+    data: null
   });
+
+  const [existingDoc, setExistingDoc] = useState(true);
 
 
 
   const { userId } = useParams();
 
-  // //data state
-  // const [data, setData] = useState();
-  // const [existingDoc, setExistingDoc] = useState(true);
 
-  const { userName, profImg } = state.user || {};
+  const { userName, image } = state.user || {};
 
   //check data already exist or not
 
@@ -75,7 +73,7 @@ const Edit = () => {
     };
 
     try {
-      if (state.existingDoc) {
+      if (existingDoc === true) {
         client.patch(_id).set(myNewDocument).commit();
         console.log("Document updated successfully.");
       } else {
@@ -97,7 +95,17 @@ const Edit = () => {
 
         const data_query = dataQuery(state.bioId);
         client.fetch(data_query).then((data) => {
-          setState(prevState => ({ ...prevState, data: data[0], text: data[0]?.intro, existingDoc: data.length !== 0 }));
+          setState(prevState => ({ ...prevState, data: data[0], text: data[0]?.intro,github: data[0]?.github , youtube: data[0]?.youtube , linkedIn: data[0]?.linkedIn , insta: data[0]?.instagram , blog: data[0]?.blogs , link1: data[0]?.other1?.title , link2: data[0]?.other2?.title , link3: data[0]?.other3?.title , link4: data[0]?.other4?.title , inp1: data[0]?.other1?.input , inp2: data[0]?.other2?.input , inp3: data[0]?.other3?.input , inp4: data[0]?.other4?.input }));
+
+          
+          if (data.length === 0) {
+            setExistingDoc(false);
+          } else {
+            setExistingDoc(true);
+          }
+          
+
+
         });
       } catch (error) {
         console.log(error);
@@ -105,7 +113,9 @@ const Edit = () => {
     };
 
     fetchUser();
-  }, [userId]);
+  }, [userId,state.bioId,existingDoc]);
+
+ 
 
 
 
@@ -115,7 +125,7 @@ const Edit = () => {
     <div className="flex flex-col justify-start h-auto min-h-full overflow-y-scroll no-scrollbar items-center gap-1 w-3/5 ">
       <div className="w-full mt-28 flex flex-col justify-center items-center">
         <img
-          src={profImg}
+          src={image}
           alt="userImage"
           className="rounded-full w-36 h-36 -mt-10 border-4  border-white drop-shadow-2xl relative"
         />
