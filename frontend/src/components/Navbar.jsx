@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
+import Logo from '../assets/logo.png'
 import { useNavigate } from 'react-router-dom'
-import { AiFillCloseCircle } from 'react-icons/ai';
 import Sidebar from './Sidebar';
+import { Delete } from '../assets/sidebar';
 
 const Navbar = () => {
      const navigate = useNavigate();
@@ -13,11 +14,15 @@ const Navbar = () => {
      }
 
      return (
-          <div className='flex items-center justify-between px-5 w-full  h-16 fixed bg-transparent top-2'>
-               <div className='p-1 md:p-2 flex text-center justify-center items-center'>
-                    <p className='text-black text-center font-normal cursor-pointer text-3xl font-display md:text-4xl' onClick={
+          <div className='flex items-center justify-between px-10 ml-10 w-full  h-16 fixed bg-transparent top-5'>
+               <div className=' ml md:p-2 top-5  flex text-center justify-center items-center'>
+                    {/* <p className='text-black text-center font-normal cursor-pointer text-3xl font-display md:text-4xl' onClick={
                          ()=>navigate('/')
-                    }>Bio_Links</p>
+                    }>BioFuse</p> */}
+                   
+                    <img src={Logo} alt="logo" className='w-64 h-64 ' onClick={
+                         () => navigate('/')} />
+
                </div>
 
 
@@ -42,9 +47,10 @@ const Navbar = () => {
 
                {toggleSidebar && (
                     <div className='fixed w-1/4 bg-white h-screen overflow-y-auto shadow-md z-50 animate-slide-in right-0 top-0'>
-                         <div className='absolute w-full flex justify-end items-center p-2'>
+                         <div className='absolute w-full flex justify-end items-center p-2 right-5 top-3'>
+                              <img src={Delete} alt="close" className='w-14 h-14 cursor-pointer' onClick={() => setToggleSidebar(false)}/>
 
-                              <AiFillCloseCircle fontSize={30} className='cursor-pointer' onClick={() => setToggleSidebar(false)} />
+                              
                              
                          </div>
                          <Sidebar/>

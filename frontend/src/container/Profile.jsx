@@ -38,17 +38,23 @@ const Profile = () => {
 
   const { userName, image } = user || {};
 
-
+  const randomImg = 'https://source.unsplash.com/1600x900/?night,aesthetic,photography,technologgy/'
+  
   return (
     <div className="flex flex-col justify-start h-auto min-h-full overflow-y-scroll no-scrollbar items-center gap-1 w-3/5 ">
-      <div className="w-full mt-28 flex flex-col justify-center items-center">
-      
-        <img
-          src={image}
-          alt="userImage"
-          className='rounded-full w-36 h-36 -mt-10 border-4  border-white drop-shadow-2xl relative'
-        />
-        <p className='font-patua text-2xl'>{userName}</p>
+      <div className="w-full mt-14 flex flex-col justify-center items-center">
+        <div className='flex justify-center flex-col items-center bg-card md:w-3/6 rounded-2xl drop-shadow-xl w-96 h-48  relative overflow-hidden'>
+          <img src={randomImg} alt="banner" />
+          </div>
+        <div className='flex -mt-16 items-center justify-center flex-col '>
+          <img
+            src={image}
+            alt="userImage"
+            className='rounded-full w-36 h-36 -mt-10 border-2 bg-white-400 drop-shadow-2xl relative'
+          />
+          <p className='font-patua text-2xl'>{userName}</p>
+      </div>
+        
         <div className='flex justify-center mt-6 items-center bg-card rounded-2xl drop-shadow-xl w-96 md:w-3/6 h-auto relative'>
           <p className='text-center p-3 font-footer text-xl'> 
            {bioData?.intro}
@@ -62,7 +68,7 @@ const Profile = () => {
       </div>
 
 
-      <div className='flex flex-col w-full justify-center items-center gap-8 mt-7'>
+      <div className='flex flex-col w-full justify-center items-center gap-8 mt-5'>
         {bioData?.github && bioData?.github !== "" && <Major icon={Github} title={"Follow On Github"} link={bioData?.github} />}
         {bioData?.linkedIn && bioData?.linkedIn !== "" && <Major icon={LinkedIn} title={"Follow On LinkedIn"} link={bioData?.linkedIn} />}
         {bioData?.blogs && bioData?.blogs !== "" && <Major icon={Blog} title={"Follow The Blogs"} link={bioData?.blogs} />}

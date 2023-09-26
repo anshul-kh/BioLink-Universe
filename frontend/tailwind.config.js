@@ -56,6 +56,7 @@ module.exports = {
         mainColor: '#FBFBFB',
         secondaryColor: '#F0F0F0',
         blackOverlay: 'rgba(0, 0 ,0 ,0.7)',
+        bgBlack:'#040D12',
         card: '#F5F5F5',
         card_1: '#F5F4F4',
         contain: '#FDFDFD'

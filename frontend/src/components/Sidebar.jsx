@@ -1,6 +1,8 @@
 import React,{useEffect, useState} from 'react'
 import Line from '../assets/line.png'
 import { Link, useLocation, useParams } from 'react-router-dom';
+import { Edit, Share, About, Contact } from '../assets/sidebar';
+import { Github } from '../assets';
 
 
 const Sidebar = ({ closeToggle }) => {
@@ -22,42 +24,47 @@ const Sidebar = ({ closeToggle }) => {
   
   }, [location])
 
-  // console.log(typeof (user));
+ 
 
 
 
   return (
-    <div className='z-40 flex h-full flex-start font-patua pt-24 gap-3 items-center p-7 flex-col '>
-      <p className='text-2xl'>Welcome</p>
+    <div className='z-40 flex h-full flex-start font-patua no-scrollbar p-12 pt-28 gap-3 items-center  flex-col '>
+      <p className='text-3xl'>Operations Hub</p>
       <img src={Line} alt="line" />
       {
         location.pathname.includes(`/user/`)   && (
           <div className='flex justify-center mt-6 items-center bg-card rounded-2xl drop-shadow-xl w-96 md:w-5/6 h-14 relative text-xl'>
-            <Link to={`/edit/${userId}`}>
-              Edit Your Profile
+            <Link to={`/edit/${userId}`} className='flex justify-center items-center flex-row gap-4'>
+              <img src={Edit} alt="edit" className='w-10 h-10' />
+              Tailor Your Profile
             </Link>
           </div>
         )
       }
 
       <div className='flex justify-center mt-6 items-center bg-card rounded-2xl drop-shadow-xl w-96 md:w-5/6 h-14 relative text-xl '>
-        <Link>
-        About
+        <Link className='flex flex-start items-center flex-row gap-4'>
+          <img src={About} alt="about" className='w-10 h-10' />
+          Platform Insights
         </Link>
       </div>
       <div className='flex justify-center mt-6 items-center bg-card rounded-2xl drop-shadow-xl w-96 md:w-5/6 h-14 relative text-xl'>
-        <Link>
-        Contact
+        <Link className='flex flex-start items-center flex-row gap-4'>
+          <img src={Contact} alt="Contact" className='w-10 h-10' />
+          Request assistance
         </Link>
       </div>
       <div className='flex justify-center mt-6 items-center bg-card rounded-2xl drop-shadow-xl w-96 md:w-5/6 h-14 relative text-xl'>
-        <Link>
-        Share
+        <Link className='flex flex-start items-center flex-row gap-4'>
+          <img src={Share} alt="Share" className='w-10 h-10 mr-2' />
+          Share My Profile
         </Link>
       </div>
       <div className='flex justify-center mt-6 items-center bg-card rounded-2xl drop-shadow-xl w-96 md:w-5/6 h-14 relative text-xl'>
-        <Link>
-        Feedback
+        <Link className='flex flex-start items-center flex-row gap-4'>
+          <img src={Github} alt="gitub" className='w-10 h-10' />
+          Navigate to GitHub
         </Link>
       </div>
 

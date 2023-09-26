@@ -12,7 +12,7 @@ const Home = () => {
         
           <div>
               
-               <div className='flex flex-col  justify-start  gap-12  w-1/2 absolute top-1/4 left-32 '>
+               <div className='flex flex-col  justify-start   gap-12  w-1/2 absolute top-1/4 left-32 '>
                     <div className='font-roboto flex flex-row items-center gap-2 text-2xl'>
                          Step Forward
                          <div>
