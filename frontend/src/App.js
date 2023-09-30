@@ -21,7 +21,7 @@ function App() {
           <Route path="/edit/:userId" element={<Edit/>} /> 
         </Routes>
         
-        <Footer/>
+       
       </div>
       
     </Router>

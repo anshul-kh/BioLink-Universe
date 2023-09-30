@@ -7,7 +7,11 @@ import { client } from '../utils/client';
 import Github from '../assets/github.png';
 import { Blog, Insta, LinkedIn, Youtube } from '../assets';
 
+import Lottie from 'react-lottie-player'
+import lottieJson from '../assets/Loader/loader.json'
+
 const Profile = () => {
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [bioData,setBioData] = useState(null);
 
@@ -16,6 +20,7 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
+      setLoading(true);
       try {
         const query = userQuery(userId);
         await client.fetch(query).then((data) => {
@@ -31,6 +36,7 @@ const Profile = () => {
       } catch (error) {
         console.log(error);
       }
+      setLoading(false);
     };
 
     fetchUser();
@@ -42,6 +48,12 @@ const Profile = () => {
   
   return (
     <div className="flex flex-col justify-start h-auto min-h-full overflow-y-scroll no-scrollbar items-center gap-1 w-3/5 ">
+      {loading ? (<Lottie
+        loop
+        animationData={lottieJson}
+        play
+        style={{ width: 150, height: 150 }}
+      />): (<>
       <div className="w-full mt-14 flex flex-col justify-center items-center">
         <div className='flex justify-center flex-col items-center bg-card md:w-3/6 rounded-2xl drop-shadow-xl w-96 h-48  relative overflow-hidden'>
           <img src={randomImg} alt="banner" />
@@ -61,7 +73,7 @@ const Profile = () => {
          </p>
         </div>
 
-      </div>
+      </div >
 
       <div>
 
@@ -81,18 +93,19 @@ const Profile = () => {
       </div>
 
 
-      {
-        bioData?.other1 && (
-          <div className='text-center flex  w-full flex-col justify-center items-center font-patua mt-5 gap-3 mb-5'>
-            <p className='text-2xl'>Other Links</p>
-            {bioData?.other1 && bioData?.other1.input !== "" && <Minor link={bioData?.other1?.input} title={bioData?.other1?.title} />}
-            {bioData?.other2 && bioData?.other2.input !== "" && <Minor link={bioData?.other2?.input} title={bioData?.other2?.title} />}
-            {bioData?.other3 && bioData?.other3.input !== "" && <Minor link={bioData?.other3?.input} title={bioData?.other3?.title} />}
-            {bioData?.other4 && bioData?.other4.input !== "" && <Minor link={bioData?.other4?.input} title={bioData?.other4?.title} />}
-            
-          </div>
-        )
-      }
+{
+  bioData?.other1 && (
+    <div className='text-center flex  w-full flex-col justify-center items-center font-patua mt-5 gap-3 mb-5'>
+      <p className='text-2xl'>Other Links</p>
+      {bioData?.other1 && bioData?.other1.input !== "" && <Minor link={bioData?.other1?.input} title={bioData?.other1?.title} />}
+      {bioData?.other2 && bioData?.other2.input !== "" && <Minor link={bioData?.other2?.input} title={bioData?.other2?.title} />}
+      {bioData?.other3 && bioData?.other3.input !== "" && <Minor link={bioData?.other3?.input} title={bioData?.other3?.title} />}
+      {bioData?.other4 && bioData?.other4.input !== "" && <Minor link={bioData?.other4?.input} title={bioData?.other4?.title} />}
+
+    </div>
+  )
+} </>)
+}
 
     </div>
   );

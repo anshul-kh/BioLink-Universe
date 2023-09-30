@@ -5,9 +5,12 @@ import { userQuery, dataQuery } from "../utils/query";
 import { Github, LinkedIn, Youtube, Insta, Blog, Save } from "../assets/index";
 import EditSocial from "../components/EditSocial";
 import EditOther from "../components/EditOther";
+import Lottie from 'react-lottie-player'
+import lottieJson from '../assets/Loader/loader.json'
 
 
 const Edit = () => {
+  const [loading, setLoading] = useState(false);
   const [state, setState] = useState({
     user: null,
     text: '',
@@ -25,9 +28,10 @@ const Edit = () => {
     inp3: '',
     inp4: '',
     bioId: '',
-    data: null
-  });
+    data: null,
 
+  });
+  
   const [existingDoc, setExistingDoc] = useState(true);
 
 
@@ -86,7 +90,9 @@ const Edit = () => {
   }
 
   useEffect(() => {
+    
     const fetchUser = async () => {
+      setLoading(true);
       try {
         const query = userQuery(userId);
         await client.fetch(query).then((data) => {
@@ -105,7 +111,7 @@ const Edit = () => {
           }
           
 
-
+          setLoading(false);
         });
       } catch (error) {
         console.log(error);
@@ -113,6 +119,7 @@ const Edit = () => {
     };
 
     fetchUser();
+    
   }, [userId,state.bioId,existingDoc]);
 
  
@@ -123,7 +130,15 @@ const Edit = () => {
 
   return (
     <div className="flex flex-col justify-start h-auto min-h-full overflow-y-scroll no-scrollbar items-center gap-1 w-3/5 ">
-      <div className="w-full mt-28 flex flex-col justify-center items-center">
+      {loading ? (
+        <Lottie
+          loop
+          animationData={lottieJson}
+          play
+          style={{ width: 150, height: 150 }}
+        />
+      ) : (<>
+        <div className="w-full mt-28 flex flex-col justify-center items-center">
         <img
           src={image}
           alt="userImage"
@@ -221,6 +236,8 @@ const Edit = () => {
           }}
         />
       </button>
+      </>)
+}
     </div>
   );
 };

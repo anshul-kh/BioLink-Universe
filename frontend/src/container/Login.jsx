@@ -8,13 +8,16 @@ import { client_id } from '../utils/id'
 import { gapi } from "gapi-script";
 import { client } from '../utils/client';
 import { v4 as uuidv4 } from 'uuid';
+import Lottie from 'react-lottie-player'
+import lottieJson from '../assets/Loader/loader.json'
 
 const Login = () => {
 
-
+  const [loading, setLoading] = React.useState(false);
   const navigate = useNavigate();
 
   const handleGoogleLogin = (res) => {
+    setLoading(true);
 
     localStorage.setItem('user', JSON.stringify(res.profileObj));
     
@@ -34,18 +37,20 @@ const Login = () => {
       client.createIfNotExists(doc).then(() => {
         navigate(`/user/${googleId}`, { replace: true })
       })
-    
+     setLoading(false);
     }
 
     
   
 
   useEffect(() => {
+    setLoading(true);
     gapi.load("client:auth2", () => {
       gapi.client.init({
         clientId: {client_id}
       });
     });
+    setLoading(false);
   }, [])
 
   
@@ -54,11 +59,19 @@ const Login = () => {
 
   return (
     <div className='absolute flex items-center justify-center flex-col h-auto gap-12 w-8/12'>
+      {loading ? (
+        <Lottie
+          loop
+          animationData={lottieJson}
+          play
+          style={{ width: 150, height: 150 }}
+        />
+      ): (<>
       <div className='flex flex-col justify-center items-center font-roboto text-xl'>
         <p> Your Journey Begins</p>
         <img src={Line} alt="line" />
 
-      </div>
+      </div >
 
 
       <div className='flex flex-col font-patua gap-3 text-5xl'>
@@ -96,7 +109,8 @@ const Login = () => {
 
         </div>
         <img src={Bio} className='bottom-3 drop-shadow-xl relative right-1' alt="bio" />
-      </div>
+      </div></>)
+}
     </div>
   )
 }
