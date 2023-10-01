@@ -10,6 +10,8 @@ import { client } from '../utils/client';
 import { v4 as uuidv4 } from 'uuid';
 import Lottie from 'react-lottie-player'
 import lottieJson from '../assets/Loader/loader.json'
+import { motion } from 'framer-motion';
+import Footer from '../components/Footer';
 
 const Login = () => {
 
@@ -67,38 +69,38 @@ const Login = () => {
           style={{ width: 150, height: 150 }}
         />
       ): (<>
-      <div className='flex flex-col justify-center items-center font-roboto text-xl'>
+          <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 3, delay: .2 }} className='flex flex-col justify-center items-center font-roboto text-xl'>
         <p> Your Journey Begins</p>
         <img src={Line} alt="line" />
 
-      </div >
+      </motion.div >
 
 
-      <div className='flex flex-col font-patua gap-3 text-5xl'>
+      <motion.div className='flex flex-col font-patua gap-3 text-5xl'>
 
-        <p>
+            <motion.p animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 3, delay: .3 }}>
           Hassle-free setup with
 
-        </p>
-        <p>Google Authentication</p>
+        </motion.p>
+            <motion.p animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 3, delay: .4 }}>Google Authentication</motion.p>
 
-      </div>
+      </motion.div>
 
-      <div className='flex justify-between w-4/6 bg-contain rounded-xl drop-shadow-xl font-patua '>
-        <div className='flex flex-col justify-center items-center'>
-          <div className='text-5xl gap-2 flex flex-col drop-shadow-2xl relative bottom-12'><p>Step into</p>
-            <p>Bio Oasis</p></div>
+          <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 3, delay: .5 }} className='flex justify-between w-4/6 bg-contain rounded-xl drop-shadow-xl font-patua '>
+        <motion.div className='flex flex-col justify-center items-center'>
+              <motion.div  className='text-5xl gap-2 flex flex-col drop-shadow-2xl relative bottom-12 left-10'><motion.p animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 3, delay: .6 }}>Step into</motion.p>
+                <motion.p animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 3, delay: .6 }}>Bio Oasis</motion.p></motion.div>
 
 
 
           <GoogleLogin
             render={(renderProps) => (
-              <button className='flex relative flex-shrink-0 justify-center items-center flex-col -left-6 cursor-pointer top-7' onClick={renderProps.onClick} >
+                  <motion.button whileHover={{x:70,y:5,scale:1.1,transition:{duration:1}}} animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 3, delay: .7 }} className='flex relative flex-shrink-0 justify-center items-center flex-col -left-6 cursor-pointer top-7' onClick={renderProps.onClick} >
                 <img src={Google} className='absolute -top-12 z-30' alt="google" />
                 <div className='w-80 h-16 flex justify-center items-center drop-shadow-lg rounded-xl bg-card text-2xl flex-shrink-0'>
                   Authenticate
                 </div>
-              </button>
+              </motion.button>
             )}
             clientId={client_id}
             onSuccess={handleGoogleLogin}
@@ -107,10 +109,13 @@ const Login = () => {
           />
 
 
-        </div>
-        <img src={Bio} className='bottom-3 drop-shadow-xl relative right-1' alt="bio" />
-      </div></>)
-}
+        </motion.div>
+            <motion.img whileHover={{x:15,y:20,scale:1.05,transition:{duration:1}}} animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 3, delay: .8 }} src={Bio} className='bottom-3 drop-shadow-xl relative right-1' alt="bio" />
+          </motion.div></>)
+        
+        
+      }
+      <Footer/>
     </div>
   )
 }
