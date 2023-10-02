@@ -26,6 +26,11 @@ const Sidebar = ({ closeToggle }) => {
   
   }, [location])
 
+
+  const shareUrl = () => {
+    navigator.clipboard.writeText(window.location.href);
+    alert('Link Copied to Clipboard')
+  }
  
 
 
@@ -37,18 +42,27 @@ const Sidebar = ({ closeToggle }) => {
         <motion.img src={Line} alt="line" />
       </motion.div>
       {
-        location.pathname.includes(`/user/`)   && (
-          <motion.div whileHover={{ scale: 1.05, rotate: -8, transition: { delay: 0, duration: .3 } }} animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1.5, delay: .3 }} className='flex justify-center mt-6 items-center bg-card rounded-2xl drop-shadow-xl w-96 md:w-5/6 h-14 relative text-xl'>
-            <Link to={`/edit/${userId}`} className='flex justify-center items-center flex-row gap-4'>
-              <img src={Edit} alt="edit" className='w-10 h-10' />
-              Tailor Your Profile
-            </Link>
-          </motion.div>
+        location.pathname.includes(`/user/`) && (
+          <>
+            <motion.div whileHover={{ scale: 1.05, rotate: -8, transition: { delay: 0, duration: .3 } }} animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1.5, delay: .3 }} className='flex justify-center mt-6 items-center bg-card rounded-2xl drop-shadow-xl w-96 md:w-5/6 h-14 relative text-xl'>
+              <Link to={`/edit/${userId}`} className='flex justify-center items-center flex-row gap-4'>
+                <img src={Edit} alt="edit" className='w-10 h-10' />
+                Tailor Your Profile
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.05, rotate: -8, transition: { delay: 0, duration: .3 } }} animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1.5, delay: .6 }} className='flex justify-center mt-6 items-center bg-card rounded-2xl drop-shadow-xl w-96 md:w-5/6 h-14 relative text-xl'>
+              <Link onClick={shareUrl} className='flex flex-start items-center flex-row gap-4'>
+                <motion.img src={Share} alt="Share" className='w-10 h-10 mr-2' />
+                Share My Profile
+              </Link>
+            </motion.div>
+          </>
+          
         )
       }
 
       <motion.div whileHover={{ scale: 1.05, rotate: -8, transition: { delay: 0, duration: .3 } }} animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1.5, delay: .4 }} className='flex justify-center mt-6 items-center bg-card rounded-2xl drop-shadow-xl w-96 md:w-5/6 h-14 relative text-xl '>
-        <Link className='flex flex-start items-center flex-row gap-4'>
+        <Link to={'/about'} className='flex flex-start items-center flex-row gap-4'>
           <motion.img animate={{ rotate: [0, 200, 200, 0] }} transition={{delay:0.7}} src={About} alt="about" className='w-10 h-10' />
           Platform Insights
         </Link>
@@ -59,12 +73,7 @@ const Sidebar = ({ closeToggle }) => {
           Request assistance
         </Link>
       </motion.div>
-      <motion.div whileHover={{scale:1.05,rotate:-8,transition:{delay:0,duration:.3}}} animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1.5,delay:.6 }} className='flex justify-center mt-6 items-center bg-card rounded-2xl drop-shadow-xl w-96 md:w-5/6 h-14 relative text-xl'>
-        <Link  className='flex flex-start items-center flex-row gap-4'>
-          <motion.img  src={Share} alt="Share" className='w-10 h-10 mr-2' />
-          Share My Profile
-        </Link>
-      </motion.div>
+     
       <motion.div whileHover={{ scale: 1.05, rotate: -8, transition: { delay: 0, duration: .3 } }} animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1.5, delay: .7 }} className='flex justify-center mt-6 items-center bg-card rounded-2xl drop-shadow-xl w-96 md:w-5/6 h-14 relative text-xl'>
         <Link onClick={() => window.location.href ='https://github.com/anshul-kh/BioLink-Universe.git'} className='flex flex-start items-center flex-row gap-4'>
           <motion.img   src={Github} alt="gitub" className='w-10 h-10' />

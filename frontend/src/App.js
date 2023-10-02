@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Routes,Route } from 'react-router-dom';
 import Login from './container/Login';
 import Profile from './container/Profile';
 import Edit from './container/Edit';
+import About from './container/About';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} /> 
           <Route path="/login" element={<Login/>} /> 
+          <Route path="/about" element={<About/>} /> 
           <Route path="/user/:userId" element={<Profile/>} /> 
           <Route path="/edit/:userId" element={<Edit/>} /> 
         </Routes>

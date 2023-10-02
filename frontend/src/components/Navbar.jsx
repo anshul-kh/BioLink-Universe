@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import Sidebar from './Sidebar';
 import { Delete } from '../assets/sidebar';
 import { motion } from 'framer-motion';
-
+import { Link } from 'react-router-dom';
 const Navbar = () => {
      const navigate = useNavigate();
 
@@ -25,8 +25,9 @@ const Navbar = () => {
 
 
                <div className='flex flex-row gap-2 md:gap-12 font-display text-xl md:text-3xl items-center md:px-9 mr-10  justify-center'>
-                    <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 3, delay: .6 }} className='invisible md:visible'>
-                         About
+                    <motion.div  animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 3, delay: .6 }} className='invisible md:visible'>
+                         <Link to={'/about'} >
+                              About</Link>
                     </motion.div>
                     <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 3, delay: .7 }} className='invisible md:visible'>
                          Contact
