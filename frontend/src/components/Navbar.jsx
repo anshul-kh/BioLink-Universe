@@ -18,20 +18,15 @@ const Navbar = () => {
           <div className='flex items-center justify-between  ml-10 w-full  h-16 fixed bg-transparent top-5' style={{ zIndex: 999 }}>
                <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1, delay: .5 }} whileHover={{scale:0.9}} className=' ml md:p-2 top-5  flex text-center justify-center items-center'>
                    
-                    <img src={Logo} alt="logo" className='cursor-pointer w-64 h-64 ' onClick={
+                    <img src={Logo} alt="logo" className='cursor-pointer w-48 h-56 ' onClick={
                          () => navigate('/')} />
+                    {/* <p className='text-2xl font-patua'>BioFuse</p> */}
 
                </motion.div>
 
 
                <div className='flex flex-row gap-2 md:gap-12 font-display text-xl md:text-3xl items-center md:px-9 mr-10  justify-center'>
-                    <motion.div  animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 3, delay: .6 }} className='invisible md:visible'>
-                         <Link to={'/about'} >
-                              About</Link>
-                    </motion.div>
-                    <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 3, delay: .7 }} className='invisible md:visible'>
-                         Contact
-                    </motion.div>
+                    
                     <motion.button animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 3, delay: .9 }} onClick={handleSidebar} >
                          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
                               <circle cx="25" cy="25" r="25" fill="#D9D9D9" opacity='0.5' />
