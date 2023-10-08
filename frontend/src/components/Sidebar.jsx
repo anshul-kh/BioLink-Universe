@@ -68,7 +68,7 @@ const Sidebar = ({ closeToggle }) => {
         </Link>
       </motion.div>
       <motion.div whileHover={{ scale: 1.05, rotate: -8, transition: { delay: 0, duration: .3 } }} animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1.5, delay: .5 }} className='flex justify-center mt-6 items-center bg-card rounded-2xl drop-shadow-xl w-96 md:w-5/6 h-14 relative text-xl'>
-        <Link className='flex flex-start items-center flex-row gap-4'>
+        <Link to={'/contact'} className='flex flex-start items-center flex-row gap-4'>
           <motion.img src={Contact} alt="Contact" className='w-10 h-10' />
           Request assistance
         </Link>

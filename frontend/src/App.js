@@ -6,6 +6,7 @@ import Login from './container/Login';
 import Profile from './container/Profile';
 import Edit from './container/Edit';
 import About from './container/About';
+import  Contact  from './container/Contact';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/about" element={<About/>} /> 
           <Route path="/user/:userId" element={<Profile/>} /> 
           <Route path="/edit/:userId" element={<Edit/>} /> 
+          <Route path="/contact" element={<Contact/>} /> 
         </Routes>
         
        
