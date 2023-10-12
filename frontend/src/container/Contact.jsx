@@ -1,17 +1,19 @@
 import React from 'react';
 import { useForm, ValidationError } from '@formspree/react';
-import { Line,Map } from '../assets';
+import { Line, Map } from '../assets';
+import { motion } from 'framer-motion';
+
 function ContactForm() {
      const [state, handleSubmit] = useForm("mjvqpqwb");
      if (state.succeeded) {
-          return <p>Thanks for joining!</p>;
+          return <p>Response Has Been Submitted!</p>;
      }
      return (
-          <div className='flex flex-row justify-center items-center w-full gap-7'>
-               <div className='flex flex-row justify-center items-start absolute z-10 text-6xl gap-5 top-24 ml-48  text-center font-patua '><p className='text-white'>Feel Free</p>
-                    <p className=''> To Request Assistance </p></div>
-               <img src={Map} alt="insight" className='relative bottom-10' />
-               <form onSubmit={handleSubmit} className='flex justify-center py-16 items-center bg-contain rounded-2xl  drop-shadow-xl flex-col top-16 w-2/6  gap-10 text-center relative  '>
+          <motion.div  className='flex flex-row justify-center items-center w-full gap-7'>
+               <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1, delay: .4 }} className='flex flex-row justify-center items-start absolute z-10 text-6xl gap-5 top-24 ml-48  text-center font-patua '><p className='text-white'>Feel Free</p>
+                    <motion.p className=''> To Request Assistance </motion.p></motion.div>
+               <motion.img animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1, delay: .2 }} src={Map} alt="insight" className='relative bottom-10' />
+               <motion.form animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1, delay: .6 }} onSubmit={handleSubmit} className='flex justify-center py-16 items-center bg-contain rounded-2xl  drop-shadow-xl flex-col top-16 w-2/6  gap-10 text-center relative  '>
 
                     <p className='flex justify-center items-center flex-col gap-3 text-3xl font-display text-center'>
                          Enter You Details
@@ -42,11 +44,11 @@ function ContactForm() {
                          field="message"
                          errors={state.errors}
                     />
-                    <button type="submit" disabled={state.submitting} className='flex justify-center items-center bg-black text-white font-roboto rounded-2xl  drop-shadow-xl w-96 h-16 text-center relative text-2xl'>
+                    <motion.button whileHover={{scale:1.2,transition:{duration:.3}}} type="submit" disabled={state.submitting} className='flex justify-center items-center bg-black text-white font-roboto rounded-2xl  drop-shadow-xl w-96 h-16 text-center relative text-2xl'>
                          Submit
-                    </button>
-               </form>
-          </div>
+                    </motion.button>
+               </motion.form>
+          </motion.div>
      );
 }
 

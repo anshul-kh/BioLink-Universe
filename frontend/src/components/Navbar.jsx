@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import Sidebar from './Sidebar';
 import { Delete } from '../assets/sidebar';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+
+
 const Navbar = () => {
      const navigate = useNavigate();
 
@@ -16,18 +17,18 @@ const Navbar = () => {
 
      return (
           <div className='flex items-center justify-between  ml-10 w-full  h-16 fixed bg-transparent top-5' style={{ zIndex: 999 }}>
-               <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1, delay: .5 }} whileHover={{scale:0.9}} className=' ml md:p-2 top-5  flex text-center justify-center items-center'>
+               <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1, delay: .5 }}  className=' ml-9 md:p-2 top-5  flex text-center justify-center items-center'>
                    
-                    <img src={Logo} alt="logo" className='cursor-pointer w-48 h-56 ' onClick={
+                    <img src={Logo} alt="logo" className='cursor-pointer w-48 h-20 ' onClick={
                          () => navigate('/')} />
-                    {/* <p className='text-2xl font-patua'>BioFuse</p> */}
+                    
 
                </motion.div>
 
 
                <div className='flex flex-row gap-2 md:gap-12 font-display text-xl md:text-3xl items-center md:px-9 mr-10  justify-center'>
                     
-                    <motion.button animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 3, delay: .9 }} onClick={handleSidebar} >
+                    <motion.button animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 2, delay: .9 }} onClick={handleSidebar} >
                          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
                               <circle cx="25" cy="25" r="25" fill="#D9D9D9" opacity='0.5' />
                               <path d="M37.273 27.8636C38.1014 27.8636 38.773 27.1921 38.773 26.3636C38.773 25.5352 38.1014 24.8636 37.273 24.8636V27.8636ZM7.27295 27.8636L37.273 27.8636V24.8636L7.27295 24.8636V27.8636Z" fill="black" />
@@ -47,7 +48,7 @@ const Navbar = () => {
                               
                              
                          </div>
-                         <Sidebar/>
+                         <Sidebar closeToggle={setToggleSidebar}/>
                     </div>
 
                )}
