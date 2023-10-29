@@ -4,6 +4,19 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      screens: {
+          'sm': '640px',   
+          // => @media (min-width: 640px) { ... }
+
+          'md': '768px',   
+          // => @media (min-width: 768px) { ... }
+
+          'lg': '1024px',   
+          // => @media (min-width: 1024px) { ... }
+
+          'xl': '1280px',   
+          // => @media (min-width: 1280px) { ... }
+        },
       fontFamily: {
         display: ['Monomaniac One', 'sans-serif'],
         footer: ['Molengo', 'sans-serif'],
@@ -56,6 +69,7 @@ module.exports = {
         mainColor: '#FBFBFB',
         secondaryColor: '#F0F0F0',
         blackOverlay: 'rgba(0, 0 ,0 ,0.7)',
+        contact: '#f0f0f0f1',
         bgBlack:'#040D12',
         card: '#F5F5F5',
         card_1: '#F5F4F4',

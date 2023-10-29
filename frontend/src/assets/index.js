@@ -7,3 +7,6 @@ export { default as Save } from './tick-mark.png';
 export { default as Line } from './line.png';
 export {default as Insight} from './insightpng.png';
 export {default as Map} from './map.png';
+export {default as BioSmall} from './Bio_small.png';
+export {default as MidInsight} from './MidInsight.png';
+export {default as Com} from './communicate.png';

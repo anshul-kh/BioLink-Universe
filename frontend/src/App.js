@@ -1,5 +1,5 @@
 import { Home } from './container/index';
-import { Footer, Navbar } from './components/index';
+import { Navbar } from './components/index';
 import Freebar from './components/Freebar';
 import {BrowserRouter as Router, Routes,Route } from 'react-router-dom';
 import Login from './container/Login';
@@ -12,7 +12,7 @@ function App() {
 
   return (
 <Router>
-      <div className="w-full  h-full flex justify-center min-h-screen items-center  p-2">
+      <div className="md:w-full w-screen min-h-screen md:h-full flex justify-center flex-col items-center  md:p-2">
          <Navbar />
         <Freebar />
 

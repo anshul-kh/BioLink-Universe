@@ -1,0 +1,5 @@
+export {default as Line} from './Line.png'
+export {default as Banner} from './banner.png'
+export { default as Prof_1 } from './Prof_1.png'
+export { default as Prof_2 } from './Prof_2.png'
+export {default as Prof_3} from './Prof_3.png'

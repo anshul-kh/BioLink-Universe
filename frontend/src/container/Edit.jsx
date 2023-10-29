@@ -129,7 +129,7 @@ const Edit = () => {
   // console.log(data);
 
   return (
-    <div className="flex flex-col justify-start h-auto min-h-full overflow-y-scroll no-scrollbar items-center gap-1 w-3/5 ">
+    <div className="flex flex-col md:justify-start h-screen md:h-auto min-h-full overflow-y-scroll no-scrollbar items-center gap-1 w-screen  md:w-3/5 ">
       {loading ? (
         <Lottie
           loop
@@ -138,7 +138,7 @@ const Edit = () => {
           style={{ width: 150, height: 150 }}
         />
       ) : (<>
-        <div className="w-full mt-28 flex flex-col justify-center items-center">
+        <div className="w-full md:mt-28 mt-10 flex flex-col md:justify-center items-center">
         <img
           src={image}
           alt="userImage"
@@ -147,7 +147,7 @@ const Edit = () => {
         <p className="font-patua text-2xl">{userName}</p>
 
         <textarea
-          className="flex justify-start mt-6 items-start bg-card rounded-2xl drop-shadow-xl  md:w-3/6 h-auto relative p-1 text-center text-xl  whitespace-pre-wrap"
+          className="flex justify-start mt-6 items-start bg-card rounded-2xl drop-shadow-xl w-3/4  md:w-3/6 h-auto relative p-1 text-center text-xl  whitespace-pre-wrap"
           value={state.text}
           onChange={(e) => setState(prevState => ({ ...prevState, text: e.target.value }))}
           style={{
@@ -198,11 +198,15 @@ const Edit = () => {
       <div className="text-center flex  w-full flex-col justify-center items-center font-patua mt-5 gap-3 mb-5">
         <p className="text-2xl">Other Links</p>
         <EditOther
-          link={state.link1}
-          setLink={(value) => setState(prevState => ({ ...prevState, link1: value }))}
-          inp={state.inp1}
-          setInp={(value) => setState(prevState => ({ ...prevState, inp1: value }))}
-          state={state}
+              link={state.link1}
+              
+              setLink={(value) => setState(prevState => ({ ...prevState, link1: value }))}
+
+            
+              inp={state.inp1}
+
+              setInp={(value) => setState(prevState => ({ ...prevState, inp1: value }))}
+          
         />
         <EditOther
           link={state.link2}
@@ -227,12 +231,13 @@ const Edit = () => {
         />
       </div>
 
-      <button className="w-16 h-16  text-white rounded-full text-2xl font-patua drop-shadow-2xl fixed bottom-10 left-3/4 z-30 ">
+      <button className="md:w-16 md:h-16 w-14 h-14 text-white rounded-full text-2xl font-patua drop-shadow-2xl fixed bottom-10 left-3/4 z-30 ">
         <img
           src={Save}
           alt="save"
           onClick={() => {
             uploadOrEditDocument(state.bioId);
+            alert("Your Profile is Updated");
           }}
         />
       </button>

@@ -28,10 +28,23 @@ const Sidebar = ({ closeToggle }) => {
 
 
   const shareUrl = () => {
-    navigator.clipboard.writeText(window.location.href);
-    handleClick();
-    alert('Link Copied to Clipboard')
-  }
+    const url = window.location.href;
+    const maxLength = 2000; // Maximum length for clipboard data (adjust as needed)
+
+    if (url.length <= maxLength) {
+      navigator.clipboard.writeText(url)
+        .then(() => {
+          alert('Link Copied to Clipboard');
+        })
+        .catch((error) => {
+          console.error('Clipboard copy error:', error);
+        });
+    } else {
+      // URL is too long, you may want to truncate it or handle it in some other way
+      alert('URL is too long to copy to clipboard');
+    }
+  };
+
  
   const handleClick = () => {
     closeToggle(false);
@@ -50,13 +63,13 @@ const Sidebar = ({ closeToggle }) => {
       {
         location.pathname.includes(`/user/`) && (
           <>
-            <motion.div whileHover={{ scale: 1.25, transition: { delay: 0, duration: .2 } }} animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1 }} className='flex justify-center mt-6 items-center bg-card rounded-2xl drop-shadow-xl w-96 md:w-5/6 h-14 relative text-xl'>
+            <motion.div whileHover={{ scale: 1.25, transition: { delay: 0, duration: .2 } }} animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1 }} className='flex justify-center mt-6 items-center bg-card rounded-2xl drop-shadow-xl w-full md:w-5/6 h-14 relative text-xl'>
               <Link onClick={handleClick} to={`/edit/${userId}`} className='flex justify-center items-center flex-row gap-4'>
                 <img src={Edit} alt="edit" className='w-10 h-10' />
                 Tailor Your Profile
               </Link>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.25, transition: { delay: 0, duration: .2 } }} animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1 }} className='flex justify-center mt-6 items-center bg-card rounded-2xl drop-shadow-xl w-96 md:w-5/6 h-14 relative text-xl'>
+            <motion.div whileHover={{ scale: 1.25, transition: { delay: 0, duration: .2 } }} animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1 }} className='flex justify-center mt-6 items-center bg-card rounded-2xl drop-shadow-xl w-full md:w-5/6 h-14 relative text-xl'>
               <Link onClick={shareUrl} className='flex flex-start items-center flex-row gap-4'>
                 <motion.img src={Share} alt="Share" className='w-10 h-10 mr-2' />
                 Share My Profile
@@ -67,21 +80,21 @@ const Sidebar = ({ closeToggle }) => {
         )
       }
 
-      <motion.div whileHover={{ scale: 1.25, transition: { delay: 0, duration: .2 } }} animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1 }} className='flex justify-center mt-6 items-center bg-card rounded-2xl drop-shadow-xl w-96 md:w-5/6 h-14 relative text-xl '>
+      <motion.div whileHover={{ scale: 1.25, transition: { delay: 0, duration: .2 } }} animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1 }} className='flex justify-center mt-6 items-center bg-card rounded-2xl drop-shadow-xl w-full  md:w-5/6 h-14 relative text-xl '>
         <Link onClick={handleClick} to={'/about'} className='flex flex-start items-center flex-row gap-4'>
           <motion.img animate={{ rotate: [0, 200, 200, 0] }} transition={{delay:0.7}} src={About} alt="about" className='w-10 h-10' />
           Platform Insights
         </Link>
       </motion.div>
 
-      <motion.div whileHover={{ scale: 1.25, transition: { delay: 0, duration: .3 } }} animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1 }} className='flex justify-center mt-6 items-center bg-card rounded-2xl drop-shadow-xl w-96 md:w-5/6 h-14 relative text-xl'>
+      <motion.div whileHover={{ scale: 1.25, transition: { delay: 0, duration: .3 } }} animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1 }} className='flex justify-center mt-6 items-center bg-card rounded-2xl drop-shadow-xl w-full md:w-5/6 h-14 relative text-xl'>
         <Link to={'/contact'} onClick={handleClick} className='flex flex-start items-center flex-row gap-4'>
           <motion.img src={Contact} alt="Contact" className='w-10 h-10' />
           Request assistance
         </Link>
       </motion.div>
      
-      <motion.div whileHover={{ scale: 1.25, transition: { delay: 0, duration: .2 } }} animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1 }} className='flex justify-center mt-6 items-center bg-card rounded-2xl drop-shadow-xl w-96 md:w-5/6 h-14 relative text-xl'>
+      <motion.div whileHover={{ scale: 1.25, transition: { delay: 0, duration: .2 } }} animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1 }} className='flex justify-center mt-6 items-center bg-card rounded-2xl drop-shadow-xl w-full md:w-5/6 h-14 relative text-xl'>
         <Link onClick={() => {
           window.location.href = 'https://github.com/anshul-kh/BioLink-Universe.git';
           handleClick();  }} className='flex flex-start items-center flex-row gap-4'>
@@ -93,9 +106,9 @@ const Sidebar = ({ closeToggle }) => {
       
 
 
-      <div className='bottom-20 absolute flex w-full flex-col justify-center items-center gap-5 text-center '>
-        
-        <Footer className={'flex flex-row justify-center items-center  gap-4 fixed   md:text-2xl font-footer '} />
+      <div className='md:hidden bottom-24 absolute flex w-full flex-col justify-center items-center gap-5 text-center '>
+        <p>Support the Dev:</p>
+        <Footer className={'flex flex-row justify-center items-center  gap-4 md:fixed relative md:text-2xl font-footer '} />
 
         </div>
 
