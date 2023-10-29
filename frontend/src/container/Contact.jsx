@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm, ValidationError } from '@formspree/react';
-import { Line, Map,Com } from '../assets';
+import { Line, Map,Com } from '../assets/index';
 import { motion } from 'framer-motion';
 
 function ContactForm() {
@@ -11,11 +11,11 @@ function ContactForm() {
      return (
           <motion.div className='flex md:mt-0 mt-6  md:flex-row flex-col md:justify-center items-center w-screen md:w-auto
           md:h-auto h-screen gap-7'>
-               <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1, delay: .4 }} className='flex flex-row  justify-center md:items-start items-center md:absolute md:z-10 md:text-6xl md:gap-5 gap-2 top-26 md:ml-48  text-xl  text-center font-patua '><p className=' md:text-white'>Feel Free</p>
+               <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1, delay: .4 }} className='flex flex-row  justify-center md:items-start items-center md:absolute md:z-10 md:text-6xl md:gap-5 gap-2 top-28 md:ml-48  text-xl  text-center font-patua '><p className=' md:text-white'>Feel Free</p>
                     <motion.p className=''> To Request Assistance </motion.p></motion.div>
-               <motion.img animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1, delay: .2 }} src={Map} alt="insight" className='md:relative hidden md:bottom-10  ' />
+               <motion.img animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1, delay: .2 }} src={Map} alt="insight" className='md:flex hidden md:bottom-10  ' />
                <motion.img animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1, delay: .2 }} src={Com} alt="insight" className='relative md:hidden md:bottom-10  ' />
-               <motion.form animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1, delay: .6 }} onSubmit={handleSubmit} className='flex justify-center md:py-16 items-center bg-contain  rounded-2xl  drop-shadow-xl flex-col md:top-16  md:w-2/6  gap-10  p-5 text-center relative md:h-auto h-3/6 '>
+               <motion.form animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1, delay: .6 }} onSubmit={handleSubmit} className='flex justify-center md:py-16 items-center bg-contain  rounded-2xl  drop-shadow-xl flex-col md:top-16  md:w-3/6  gap-10  p-5 text-center relative md:h-auto h-3/6 '>
                     <p className='flex justify-center items-center flex-col gap-3 text-3xl font-display text-center'>
                          Enter The Details
                          <img src={Line} alt="Line" />
